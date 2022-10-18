@@ -25,7 +25,7 @@ resource "azurerm_virtual_network" "ayanfeVnet" {
   address_space       = ["10.0.0.0/16"]
   dns_servers         = ["10.0.0.4", "10.0.0.5"]
 
- 
+
   tags = {
     environment = "Production"
   }
@@ -71,7 +71,7 @@ resource "azurerm_network_interface" "ayanfe-nic" {
   location            = azurerm_resource_group.ayanferg.location
   resource_group_name = azurerm_resource_group.ayanferg.name
 
-ip_configuration {
+  ip_configuration {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.ayanfe-subnet.id
     private_ip_address_allocation = "Dynamic"
@@ -96,7 +96,7 @@ resource "azurerm_linux_virtual_machine" "ayanfe-vm" {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
-   source_image_reference {
+  source_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
     sku       = "18.04-LTS"
